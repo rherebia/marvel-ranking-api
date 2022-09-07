@@ -13,4 +13,14 @@ public class Character {
     private Long id;
 
     private String name;
+
+    private Long comicsCount;
+
+    private Long seriesCount;
+
+    private Long eventsCount;
+
+    public Long getAppearancesCount() {
+        return comicsCount + seriesCount + eventsCount;
+    }
 }
