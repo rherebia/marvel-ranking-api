@@ -1,7 +1,7 @@
 package com.acme.core.ranking.usecase;
 
-import com.acme.core.ranking.domain.Character;
-import com.acme.core.ranking.domain.Vote;
+import com.acme.core.ranking.domain.CharacterDomain;
+import com.acme.core.ranking.domain.VoteDomain;
 import com.acme.core.ranking.domain.VoteKindEnum;
 import com.acme.core.ranking.gateway.CharacterGateway;
 import com.acme.core.ranking.repository.VoteRepository;
@@ -19,7 +19,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-class CreateVoteUseCaseImplTest {
+class CreateVoteUseCaseImplTestDomain {
 
     @BeforeAll
     public static void setup() {
@@ -33,7 +33,7 @@ class CreateVoteUseCaseImplTest {
 
         var characterId = 1L;
 
-        var ironMan = Character.builder()
+        var ironMan = CharacterDomain.builder()
                 .id(characterId)
                 .name("Iron Man")
                 .build();
@@ -66,13 +66,13 @@ class CreateVoteUseCaseImplTest {
 
         var characterId = 1L;
 
-        var ironMan = Character.builder()
+        var ironMan = CharacterDomain.builder()
                 .id(characterId)
                 .name("Iron Man")
                 .build();
 
         when(characterGateway.get(characterId)).thenReturn(ironMan);
-        when(voteRepository.save(any(Vote.class))).thenThrow(RuntimeException.class);
+        when(voteRepository.save(any(VoteDomain.class))).thenThrow(RuntimeException.class);
 
         var useCase = new CreateVoteUseCaseImpl(voteRepository, characterGateway);
 

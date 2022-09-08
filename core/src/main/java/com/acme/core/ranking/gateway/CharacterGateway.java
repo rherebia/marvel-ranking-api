@@ -1,7 +1,7 @@
 package com.acme.core.ranking.gateway;
 
-import com.acme.core.ranking.domain.Character;
+import com.acme.core.ranking.domain.CharacterDomain;
 
 public interface CharacterGateway {
-    Character get(Long characterId);
+    CharacterDomain get(Long characterId);
 }

@@ -2,7 +2,7 @@ package com.acme.core.ranking.usecase;
 
 import com.acme.core.ranking.domain.Position;
 import com.acme.core.ranking.domain.Ranking;
-import com.acme.core.ranking.domain.Vote;
+import com.acme.core.ranking.domain.VoteDomain;
 import com.acme.core.ranking.domain.VoteKindEnum;
 import com.acme.core.ranking.gateway.CharacterGateway;
 import com.acme.core.ranking.repository.VoteRepository;
@@ -25,17 +25,17 @@ public class GetRankUseCaseImpl implements GetRankUseCase {
         var votes = voteRepository.getAll();
 
         var charactersIds = votes.stream()
-                .map(Vote::getCharacterId)
+                .map(VoteDomain::getCharacterId)
                 .distinct()
                 .toList();
 
         var charactersLikesCouting = votes.stream()
                 .filter(v -> VoteKindEnum.LIKE == v.getVoteKind())
-                .collect(groupingBy(Vote::getCharacterId, counting()));
+                .collect(groupingBy(VoteDomain::getCharacterId, counting()));
 
         var charactersDislikesCouting = votes.stream()
                 .filter(v -> VoteKindEnum.DISLIKE == v.getVoteKind())
-                .collect(groupingBy(Vote::getCharacterId, counting()));
+                .collect(groupingBy(VoteDomain::getCharacterId, counting()));
 
         final AtomicInteger i = new AtomicInteger(1);
 

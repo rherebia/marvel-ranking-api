@@ -1,6 +1,6 @@
 package com.acme.core.ranking.usecase;
 
-import com.acme.core.ranking.domain.Vote;
+import com.acme.core.ranking.domain.VoteDomain;
 import com.acme.core.ranking.domain.VoteKindEnum;
 import com.acme.core.ranking.gateway.CharacterGateway;
 import com.acme.core.ranking.repository.VoteRepository;
@@ -17,20 +17,21 @@ public class CreateVoteUseCaseImpl implements CreateVoteUseCase {
 
     private final CharacterGateway characterGateway;
 
-    public void execute(Long characterId, VoteKindEnum voteKind) throws ProcessingErrorException, ResourceNotFoundException {
+    @Override
+    public VoteDomain execute(Long characterId, VoteKindEnum voteKind) throws ProcessingErrorException, ResourceNotFoundException {
         var character = characterGateway.get(characterId);
 
         if (character == null) {
             throw new ResourceNotFoundException("Character", characterId);
         }
 
-        var vote = Vote.builder()
+        var vote = VoteDomain.builder()
                 .characterId(characterId)
                 .voteKind(voteKind)
                 .build();
 
         try {
-            voteRepository.save(vote);
+            return voteRepository.save(vote);
         } catch (Exception e) {
             log.error("", e);
             throw new ProcessingErrorException();

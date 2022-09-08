@@ -1,11 +1,11 @@
 package com.acme.core.ranking.repository;
 
-import com.acme.core.ranking.domain.Vote;
+import com.acme.core.ranking.domain.VoteDomain;
 
 import java.util.List;
 
 public interface VoteRepository {
-    Vote save(Vote vote);
+    VoteDomain save(VoteDomain vote);
 
-    List<Vote> getAll();
+    List<VoteDomain> getAll();
 }

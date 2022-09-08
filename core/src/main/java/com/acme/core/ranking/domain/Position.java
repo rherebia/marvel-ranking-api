@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Position {
-    private Character character;
+    private CharacterDomain character;
 
     private Integer number;
 

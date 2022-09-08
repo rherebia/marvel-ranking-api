@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Character {
+public class CharacterDomain {
     private Long id;
 
     private String name;
@@ -20,7 +20,9 @@ public class Character {
 
     private Long eventsCount;
 
+    private Long storiesCount;
+
     public Long getAppearancesCount() {
-        return comicsCount + seriesCount + eventsCount;
+        return comicsCount + seriesCount + eventsCount + storiesCount;
     }
 }

@@ -1,8 +1,8 @@
 package com.acme.core.ranking.usecase;
 
-import com.acme.core.ranking.domain.Character;
+import com.acme.core.ranking.domain.CharacterDomain;
 import com.acme.core.ranking.domain.Position;
-import com.acme.core.ranking.domain.Vote;
+import com.acme.core.ranking.domain.VoteDomain;
 import com.acme.core.ranking.domain.VoteKindEnum;
 import com.acme.core.ranking.gateway.CharacterGateway;
 import com.acme.core.ranking.repository.VoteRepository;
@@ -23,33 +23,33 @@ class GetRankUseCaseImplTest {
         var characterGateway = mock(CharacterGateway.class);
 
         var votes = List.of(
-                Vote.builder()
+                VoteDomain.builder()
                         .characterId(1L)
                         .voteKind(VoteKindEnum.LIKE)
                         .build(),
-                Vote.builder()
+                VoteDomain.builder()
                         .characterId(1L)
                         .voteKind(VoteKindEnum.LIKE)
                         .build(),
-                Vote.builder()
+                VoteDomain.builder()
                         .characterId(1L)
                         .voteKind(VoteKindEnum.LIKE)
                         .build(),
-                Vote.builder()
+                VoteDomain.builder()
                         .characterId(1L)
                         .voteKind(VoteKindEnum.DISLIKE)
                         .build(),
-                Vote.builder()
+                VoteDomain.builder()
                         .characterId(2L)
                         .voteKind(VoteKindEnum.LIKE)
                         .build()
         );
 
         when(voteRepository.getAll()).thenReturn(votes);
-        when(characterGateway.get(1L)).thenReturn(Character.builder()
+        when(characterGateway.get(1L)).thenReturn(CharacterDomain.builder()
                         .id(1L)
                 .build());
-        when(characterGateway.get(2L)).thenReturn(Character.builder()
+        when(characterGateway.get(2L)).thenReturn(CharacterDomain.builder()
                 .id(2L)
                 .build());
 
@@ -71,24 +71,24 @@ class GetRankUseCaseImplTest {
         var characterGateway = mock(CharacterGateway.class);
 
         var votes = List.of(
-                Vote.builder()
+                VoteDomain.builder()
                         .characterId(1L)
                         .voteKind(VoteKindEnum.LIKE)
                         .build(),
-                Vote.builder()
+                VoteDomain.builder()
                         .characterId(2L)
                         .voteKind(VoteKindEnum.LIKE)
                         .build()
         );
 
         when(voteRepository.getAll()).thenReturn(votes);
-        when(characterGateway.get(1L)).thenReturn(Character.builder()
+        when(characterGateway.get(1L)).thenReturn(CharacterDomain.builder()
                 .id(1L)
                 .comicsCount(0L)
                 .seriesCount(0L)
                 .eventsCount(0L)
                 .build());
-        when(characterGateway.get(2L)).thenReturn(Character.builder()
+        when(characterGateway.get(2L)).thenReturn(CharacterDomain.builder()
                 .id(2L)
                 .comicsCount(1L)
                 .seriesCount(0L)

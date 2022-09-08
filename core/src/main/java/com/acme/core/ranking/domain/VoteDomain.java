@@ -9,7 +9,8 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Vote {
+public class VoteDomain {
+    Long id;
     Long characterId;
     VoteKindEnum voteKind;
 }
