@@ -87,12 +87,14 @@ class GetRankUseCaseImplTest {
                 .comicsCount(0L)
                 .seriesCount(0L)
                 .eventsCount(0L)
+                .storiesCount(0L)
                 .build());
         when(characterGateway.get(2L)).thenReturn(CharacterDomain.builder()
                 .id(2L)
                 .comicsCount(1L)
                 .seriesCount(0L)
                 .eventsCount(0L)
+                .storiesCount(0L)
                 .build());
 
         var useCase = new GetRankUseCaseImpl(voteRepository, characterGateway);

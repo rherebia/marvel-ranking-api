@@ -3,11 +3,11 @@ package com.acme.core.ranking.usecase;
 import com.acme.core.ranking.domain.CharacterDomain;
 import com.acme.core.ranking.domain.VoteDomain;
 import com.acme.core.ranking.domain.VoteKindEnum;
+import com.acme.core.ranking.exception.CharacterNotFoundException;
 import com.acme.core.ranking.gateway.CharacterGateway;
 import com.acme.core.ranking.repository.VoteRepository;
 import com.acme.core.shared.exception.MarvelRankingException;
 import com.acme.core.shared.exception.ProcessingErrorException;
-import com.acme.core.shared.exception.ResourceNotFoundException;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -56,7 +56,7 @@ class CreateVoteUseCaseImplTestDomain {
 
         assertThatThrownBy(() -> {
             useCase.execute(1L, VoteKindEnum.LIKE);
-        }).isInstanceOf(ResourceNotFoundException.class);
+        }).isInstanceOf(CharacterNotFoundException.class);
     }
 
     @Test

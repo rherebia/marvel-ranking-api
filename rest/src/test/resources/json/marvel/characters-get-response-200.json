@@ -1,0 +1,28 @@
+{
+  "code": 200,
+  "status": "OK",
+  "data": {
+    "offset": 0,
+    "limit": 1,
+    "total": 1,
+    "count": 1,
+    "results": [
+      {
+        "id": 1,
+        "name": "Iron Man",
+        "comics": {
+          "available": 2
+        },
+        "series": {
+          "available": 3
+        },
+        "stories": {
+          "available": 4
+        },
+        "events": {
+          "available": 5
+        }
+      }
+    ]
+  }
+}
