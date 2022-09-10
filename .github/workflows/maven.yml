@@ -32,10 +32,8 @@ jobs:
       with:
         generate-branches-badge: true
         jacoco-csv-file: core/target/site/jacoco/jacoco.csv
-        coverage-badge-filename: jacoco1.svg
-        branches-badge-filename: branches1.svg
+        coverage-badge-filename: jacoco-core.svg
         coverage-label: coverage (core)
-        branches-label: branches (core)
         
     - name: Generate JaCoCo Badge for Rest Module
       id: jacocoRest
@@ -43,10 +41,8 @@ jobs:
       with:
         generate-branches-badge: true
         jacoco-csv-file: rest/target/site/jacoco/jacoco.csv
-        coverage-badge-filename: jacoco1.svg
-        branches-badge-filename: branches1.svg
+        coverage-badge-filename: jacoco-rest.svg
         coverage-label: coverage (rest)
-        branches-label: branches (rest)
 
     - name: Commit the badge (if it changed)
       run: |
