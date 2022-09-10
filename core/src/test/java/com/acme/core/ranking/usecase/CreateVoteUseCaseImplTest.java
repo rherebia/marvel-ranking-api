@@ -19,7 +19,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-class CreateVoteUseCaseImplTestDomain {
+class CreateVoteUseCaseImplTest {
 
     @BeforeAll
     public static void setup() {
