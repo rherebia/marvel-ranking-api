@@ -1,5 +1,7 @@
 # Marvel Ranking API
 
+![maven ci](https://github.com/rherebia/marvel-ranking-api/actions/workflows/maven.yml/badge.svg)
+
 API to create a ranking of Marvel characters based on likes and dislikes votes. 
 
 ## Steps to run
