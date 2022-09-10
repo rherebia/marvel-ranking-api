@@ -31,7 +31,7 @@ jobs:
       uses: cicirello/jacoco-badge-generator@v2
       with:
         generate-branches-badge: true
-        jacoco-csv-file: marvel-ranking-api/core/target/site/jacoco/jacoco.csv
+        jacoco-csv-file: core/target/site/jacoco/jacoco.csv
         coverage-badge-filename: jacoco1.svg
         branches-badge-filename: branches1.svg
         coverage-label: coverage (core)
@@ -42,7 +42,7 @@ jobs:
       uses: cicirello/jacoco-badge-generator@v2
       with:
         generate-branches-badge: true
-        jacoco-csv-file: marvel-ranking-api/rest/target/site/jacoco/jacoco.csv
+        jacoco-csv-file: rest/target/site/jacoco/jacoco.csv
         coverage-badge-filename: jacoco1.svg
         branches-badge-filename: branches1.svg
         coverage-label: coverage (rest)
@@ -63,6 +63,6 @@ jobs:
       with:
         name: jacoco-report
         path: |
-          marvel-ranking-api/core/target/site/jacoco/
-          marvel-ranking-api/rest/target/site/jacoco/
+          core/target/site/jacoco/
+          rest/target/site/jacoco/
           
