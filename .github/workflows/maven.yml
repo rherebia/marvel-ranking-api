@@ -26,23 +26,23 @@ jobs:
     - name: Build with Maven
       run: mvn -B package --file pom.xml
       
-    - name: Generate JaCoCo Badge for Core
+    - name: Generate JaCoCo Badge for Core Module
       id: jacocoCore
       uses: cicirello/jacoco-badge-generator@v2
       with:
         generate-branches-badge: true
-        jacoco-csv-file: core/target/site/jacoco/jacoco.csv
+        jacoco-csv-file: marvel-ranking-api/core/target/site/jacoco/jacoco.csv
         coverage-badge-filename: jacoco1.svg
         branches-badge-filename: branches1.svg
         coverage-label: coverage (core)
         branches-label: branches (core)
         
-    - name: Generate JaCoCo Badge for Core
+    - name: Generate JaCoCo Badge for Rest Module
       id: jacocoRest
       uses: cicirello/jacoco-badge-generator@v2
       with:
         generate-branches-badge: true
-        jacoco-csv-file: rest/target/site/jacoco/jacoco.csv
+        jacoco-csv-file: marvel-ranking-api/rest/target/site/jacoco/jacoco.csv
         coverage-badge-filename: jacoco1.svg
         branches-badge-filename: branches1.svg
         coverage-label: coverage (rest)
@@ -63,6 +63,6 @@ jobs:
       with:
         name: jacoco-report
         path: |
-          core/target/site/jacoco/
-          rest/target/site/jacoco/
+          marvel-ranking-api/core/target/site/jacoco/
+          marvel-ranking-api/rest/target/site/jacoco/
           
