@@ -1,6 +1,8 @@
 # Marvel Ranking API
 
 ![maven ci](https://github.com/rherebia/marvel-ranking-api/actions/workflows/maven.yml/badge.svg)
+![Core Module Coverage](.github/badges/jacoco-core.svg)
+![Rest Module Coverage](.github/badges/jacoco-rest.svg)
 
 API to create a ranking of Marvel characters based on likes and dislikes votes. 
 
