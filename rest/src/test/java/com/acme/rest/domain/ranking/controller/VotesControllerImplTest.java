@@ -17,7 +17,7 @@ import static org.springframework.http.HttpHeaders.LOCATION;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-class VoteControllerImplTest extends BaseControllerTest {
+class VotesControllerImplTest extends BaseControllerTest {
 
     @Autowired
     private MockMvc mockMvc;

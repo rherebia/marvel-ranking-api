@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Tag(name = "Votes")
 @RequestMapping("votes")
-public interface VoteController {
+public interface VotesController {
 
     @PostMapping
     public ResponseEntity<VoteResponse> create(@RequestBody VoteRequest vote) throws MarvelRankingException;

@@ -14,7 +14,7 @@ import java.net.URI;
 
 @RestController
 @RequiredArgsConstructor
-public class VoteControllerImpl implements VoteController {
+public class VotesControllerImpl implements VotesController {
 
     private final CreateVoteUseCase createVoteUseCase;
 
