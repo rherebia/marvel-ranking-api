@@ -1,0 +1,28 @@
+{
+  "_embedded": {
+    "rankingPositionResponseList": [
+      {
+        "character": {
+          "id": 1,
+          "name": "Iron Man"
+        },
+        "number": 1,
+        "likes": 1,
+        "dislikes": 0,
+        "score": 1,
+        "appearances": 14
+      }
+    ]
+  },
+  "_links": {
+    "self": {
+      "href": "http://localhost/rankings?page=0&size=20"
+    }
+  },
+  "page": {
+    "size": 20,
+    "totalElements": 1,
+    "totalPages": 1,
+    "number": 0
+  }
+}

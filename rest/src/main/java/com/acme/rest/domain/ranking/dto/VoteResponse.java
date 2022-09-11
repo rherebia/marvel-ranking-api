@@ -1,9 +1,11 @@
 package com.acme.rest.domain.ranking.dto;
 
 import com.acme.core.ranking.domain.VoteKindEnum;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 public class VoteResponse {
     private Long id;
     private Long characterId;

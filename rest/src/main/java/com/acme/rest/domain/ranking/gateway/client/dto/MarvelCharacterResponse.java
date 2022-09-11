@@ -1,8 +1,10 @@
 package com.acme.rest.domain.ranking.gateway.client.dto;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 public class MarvelCharacterResponse {
     private Long id;
 

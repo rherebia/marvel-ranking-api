@@ -10,6 +10,7 @@ public class CharacterDomain {
     @Getter
     private Long id;
 
+    @Getter
     private String name;
 
     private Long comicsCount;
