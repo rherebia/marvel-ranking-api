@@ -2,20 +2,22 @@ package com.acme.core.ranking.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.Getter;
 
-@Data
 @Builder
-@NoArgsConstructor
 @AllArgsConstructor
 public class PositionDomain {
+
+    @Getter
     private CharacterDomain character;
 
+    @Getter
     private Integer number;
 
+    @Getter
     private Long likes;
 
+    @Getter
     private Long dislikes;
 
     public Long getScore() {

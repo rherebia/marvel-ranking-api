@@ -2,14 +2,12 @@ package com.acme.core.ranking.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.Getter;
 
-@Data
 @Builder
-@NoArgsConstructor
 @AllArgsConstructor
 public class CharacterDomain {
+    @Getter
     private Long id;
 
     private String name;
