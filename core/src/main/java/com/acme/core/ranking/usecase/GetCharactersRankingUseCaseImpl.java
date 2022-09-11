@@ -1,12 +1,14 @@
 package com.acme.core.ranking.usecase;
 
-import com.acme.core.ranking.domain.Position;
-import com.acme.core.ranking.domain.Ranking;
+import com.acme.core.ranking.domain.PositionDomain;
+import com.acme.core.ranking.domain.RankingDomain;
 import com.acme.core.ranking.domain.VoteDomain;
 import com.acme.core.ranking.domain.VoteKindEnum;
+import com.acme.core.ranking.exception.NoVoteFoundException;
 import com.acme.core.ranking.gateway.CharacterGateway;
 import com.acme.core.ranking.repository.VoteRepository;
 import lombok.RequiredArgsConstructor;
+import org.apache.commons.collections4.CollectionUtils;
 
 import java.util.Optional;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -15,14 +17,19 @@ import static java.util.stream.Collectors.counting;
 import static java.util.stream.Collectors.groupingBy;
 
 @RequiredArgsConstructor
-public class GetRankUseCaseImpl implements GetRankUseCase {
+public class GetCharactersRankingUseCaseImpl implements GetCharactersRankingUseCase {
 
     private final VoteRepository voteRepository;
 
     private final CharacterGateway characterGateway;
 
-    public Ranking execute() {
+    @Override
+    public RankingDomain execute() throws NoVoteFoundException {
         var votes = voteRepository.getAll();
+
+        if (CollectionUtils.isEmpty(votes)) {
+            throw new NoVoteFoundException();
+        }
 
         var charactersIds = votes.stream()
                 .map(VoteDomain::getCharacterId)
@@ -40,7 +47,7 @@ public class GetRankUseCaseImpl implements GetRankUseCase {
         final AtomicInteger i = new AtomicInteger(1);
 
         var positions = charactersIds.stream()
-                .map(id -> Position.builder()
+                .map(id -> PositionDomain.builder()
                         .character(characterGateway.get(id))
                         .likes(Optional.ofNullable(charactersLikesCouting.get(id)).orElse(0L))
                         .dislikes(Optional.ofNullable(charactersDislikesCouting.get(id)).orElse(0L))
@@ -52,7 +59,7 @@ public class GetRankUseCaseImpl implements GetRankUseCase {
 
                     return p2.getScore().compareTo(p1.getScore());
                 })
-                .map(p -> Position.builder()
+                .map(p -> PositionDomain.builder()
                         .character(p.getCharacter())
                         .likes(p.getLikes())
                         .dislikes(p.getDislikes())
@@ -60,7 +67,7 @@ public class GetRankUseCaseImpl implements GetRankUseCase {
                         .build())
                 .toList();
 
-        return Ranking.builder()
+        return RankingDomain.builder()
                 .positions(positions)
                 .build();
     }

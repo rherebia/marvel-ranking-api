@@ -1,24 +1,33 @@
 package com.acme.core.ranking.usecase;
 
 import com.acme.core.ranking.domain.CharacterDomain;
-import com.acme.core.ranking.domain.Position;
+import com.acme.core.ranking.domain.PositionDomain;
 import com.acme.core.ranking.domain.VoteDomain;
 import com.acme.core.ranking.domain.VoteKindEnum;
+import com.acme.core.ranking.exception.NoVoteFoundException;
 import com.acme.core.ranking.gateway.CharacterGateway;
 import com.acme.core.ranking.repository.VoteRepository;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import java.util.Locale;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.groups.Tuple.tuple;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-class GetRankUseCaseImplTest {
+class GetCharactersRankingUseCaseImplTest {
+
+    @BeforeAll
+    static void setup() {
+        Locale.setDefault(new Locale("en", "us"));
+    }
 
     @Test
-    void shouldCreateRankingWithVotes() {
+    void shouldCreateRankingWithVotes() throws NoVoteFoundException {
         var voteRepository = mock(VoteRepository.class);
         var characterGateway = mock(CharacterGateway.class);
 
@@ -53,12 +62,12 @@ class GetRankUseCaseImplTest {
                 .id(2L)
                 .build());
 
-        var useCase = new GetRankUseCaseImpl(voteRepository, characterGateway);
+        var useCase = new GetCharactersRankingUseCaseImpl(voteRepository, characterGateway);
 
         var ranking = useCase.execute();
 
         assertThat(ranking.getPositions())
-                .extracting(Position::getNumber, p -> p.getCharacter().getId(), Position::getScore)
+                .extracting(PositionDomain::getNumber, p -> p.getCharacter().getId(), PositionDomain::getScore)
                 .containsExactly(
                         tuple(1, 1L, 2L),
                         tuple(2, 2L, 1L)
@@ -66,7 +75,7 @@ class GetRankUseCaseImplTest {
     }
 
     @Test
-    void shouldCreateRankingWithTiedCharacters() {
+    void shouldCreateRankingWithTiedCharacters() throws NoVoteFoundException {
         var voteRepository = mock(VoteRepository.class);
         var characterGateway = mock(CharacterGateway.class);
 
@@ -97,15 +106,26 @@ class GetRankUseCaseImplTest {
                 .storiesCount(0L)
                 .build());
 
-        var useCase = new GetRankUseCaseImpl(voteRepository, characterGateway);
+        var useCase = new GetCharactersRankingUseCaseImpl(voteRepository, characterGateway);
 
         var ranking = useCase.execute();
 
         assertThat(ranking.getPositions())
-                .extracting(Position::getNumber, p -> p.getCharacter().getId(), Position::getScore)
+                .extracting(PositionDomain::getNumber, p -> p.getCharacter().getId(), PositionDomain::getScore)
                 .containsExactly(
                         tuple(1, 2L, 1L),
                         tuple(2, 1L, 1L)
                 );
+    }
+
+    @Test
+    void shouldNotGenerateRankingWithoutVotes() {
+        var voteRepository = mock(VoteRepository.class);
+        var characterGateway = mock(CharacterGateway.class);
+
+        var useCase = new GetCharactersRankingUseCaseImpl(voteRepository, characterGateway);
+
+        assertThatThrownBy(useCase::execute)
+                .isInstanceOf(NoVoteFoundException.class);
     }
 }

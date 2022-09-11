@@ -1,6 +1,7 @@
 package com.acme.rest.domain.ranking.config;
 
 import com.acme.core.ranking.exception.CharacterNotFoundException;
+import com.acme.core.ranking.exception.NoVoteFoundException;
 import com.acme.rest.domain.shared.dto.ErrorResponse;
 import com.acme.rest.domain.shared.utils.ExceptionHandlerUtils;
 import lombok.extern.slf4j.Slf4j;
@@ -16,5 +17,10 @@ public class VoteExceptionHandler {
     @ExceptionHandler(CharacterNotFoundException.class)
     public ResponseEntity<ErrorResponse> handle(CharacterNotFoundException e) {
         return ExceptionHandlerUtils.createErrorResponseEntity(e, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(NoVoteFoundException.class)
+    public ResponseEntity<ErrorResponse> handle(NoVoteFoundException e) {
+        return ExceptionHandlerUtils.createErrorResponseEntity(e, HttpStatus.NOT_FOUND);
     }
 }

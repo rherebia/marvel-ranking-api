@@ -11,6 +11,6 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Ranking {
-    private List<Position> positions;
+public class RankingDomain {
+    private List<PositionDomain> positions;
 }
