@@ -17,44 +17,44 @@ import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.classes;
 class ArchUnitTest {
 
 	@ArchTest
-	public static final ArchRule todasImplementacoesDeControllerDevemEstarAnotadasComRestController = classes()
+	public static final ArchRule allControllerImplementationsShouldBeAnnotatedWithRestController = classes()
 			.that().resideInAPackage("..controller..")
 			.and().haveSimpleNameEndingWith("ControllerImpl")
 			.should().beAnnotatedWith(RestController.class);
 
 	@ArchTest
-	public static final ArchRule todasAbstracoesDeControllerNaoDevemEstarAnotadasComRestController = classes()
+	public static final ArchRule allControllerInterfacesShouldNotBeAnnotatedWithRestController = classes()
 			.that().areInterfaces()
 			.and().resideInAPackage("..controller..")
 			.and().haveSimpleNameEndingWith("Controller")
 			.should().notBeAnnotatedWith(RestController.class);
 
 	@ArchTest
-	public static final ArchRule todasImplementacoesDeControllerNaoDevemEstarAnotadasComRequestMapping = classes()
+	public static final ArchRule allControllerImplementationsShouldNotBeAnnotatedWithRequestMapping = classes()
 			.that().areNotInterfaces()
 			.and().resideInAPackage("..controller..")
 			.and().haveSimpleNameEndingWith("ControllerImpl")
 			.should().notBeAnnotatedWith(RequestMapping.class);
 
 	@ArchTest
-	public static final ArchRule todasEntidadesDevemEstarEmPacoteEntity = classes()
+	public static final ArchRule allEntitiesShouldBePlacedOnEntityPackage = classes()
 			.that().areAnnotatedWith(Entity.class)
 			.should().resideInAPackage("..entity");
 
 	@ArchTest
-	public static final ArchRule todosRepositoriosDevemSerDoTipoJpaRepository = classes()
+	public static final ArchRule allRepositoriesShouldBeJpaRepositoryImplementations = classes()
 			.that().areAnnotatedWith(Repository.class)
 			.should().beAssignableTo(JpaRepository.class);
 
 	@ArchTest
-	public static final ArchRule documentacaoSwaggerApenasEmInterfacesDosControllers = classes()
+	public static final ArchRule swaggerDocShouldBePlacedOnlyOnControllerInterfaces = classes()
 			.that().areInterfaces()
 			.and().resideInAPackage("..controller")
 			.should().dependOnClassesThat().resideInAPackage("io.swagger.v3..")
 			.andShould().beAnnotatedWith(Tag.class);
 
 	@ArchTest
-	public static final ArchRule documentacaoSwaggerNaoPodeEstarPresenteEmImplementacaoDeController = classes()
+	public static final ArchRule swaggerDocShouldNotBePlacedOnControllerImplementations = classes()
 			.that().areNotInterfaces()
 			.and().resideInAPackage("..controller")
 			.should().dependOnClassesThat().resideOutsideOfPackage("io.swagger.v3..");
