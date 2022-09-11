@@ -60,4 +60,11 @@ class RankingsControllerImplTest extends BaseControllerTest {
                 .withQueryParam("hash", matching(".*"))
         );
     }
+
+    @Test
+    void shouldNotGetCharactersRankingWithoutAnyVote() throws Exception {
+        mockMvc.perform(get("/rankings"))
+                .andExpect(status().isNotFound())
+                .andExpect(content().json(JsonFileReader.getJson("json/app/rankings-get-response-404.json"), true));
+    }
 }
