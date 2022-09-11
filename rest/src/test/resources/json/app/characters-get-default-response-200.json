@@ -1,0 +1,21 @@
+{
+  "_embedded": {
+    "characterResponseList": [
+      {
+        "id": 1,
+        "name": "Iron Man"
+      }
+    ]
+  },
+  "_links": {
+    "self": {
+      "href": "http://localhost/characters?page=0&size=20"
+    }
+  },
+  "page": {
+    "size": 20,
+    "totalElements": 1,
+    "totalPages": 1,
+    "number": 0
+  }
+}

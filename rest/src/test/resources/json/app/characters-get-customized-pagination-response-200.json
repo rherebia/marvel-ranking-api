@@ -1,0 +1,30 @@
+{
+  "_embedded": {
+    "characterResponseList": [
+      {
+        "id": 1,
+        "name": "Iron Man"
+      }
+    ]
+  },
+  "_links": {
+    "first": {
+      "href": "http://localhost/characters?pageSize=10&page=0&size=10"
+    },
+    "prev": {
+      "href": "http://localhost/characters?pageSize=10&page=0&size=10"
+    },
+    "self": {
+      "href": "http://localhost/characters?pageSize=10&page=1&size=10"
+    },
+    "last": {
+      "href": "http://localhost/characters?pageSize=10&page=1&size=10"
+    }
+  },
+  "page": {
+    "size": 10,
+    "totalElements": 11,
+    "totalPages": 2,
+    "number": 1
+  }
+}
