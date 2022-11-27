@@ -1,10 +1,9 @@
 package com.acme.rest.domain.ranking.dto;
 
 import com.acme.core.ranking.domain.VoteKindEnum;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
-
-import javax.validation.constraints.NotNull;
 
 @Getter
 @Setter
