@@ -15,7 +15,8 @@ import lombok.Setter;
 public class VoteEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "service_sequence")
+    @SequenceGenerator(name = "service_sequence", sequenceName = "votes_seq", allocationSize=1)
     @Column(name = "id")
     private Long id;
 
